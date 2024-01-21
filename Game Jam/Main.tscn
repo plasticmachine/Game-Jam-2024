@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://crnx1frie33ie"]
+
+[ext_resource type="Script" path="res://addons/bhop3d/src/bhop3d.gd" id="1_gqbpe"]
+[ext_resource type="Texture2D" uid="uid://cva3bnm5mwtuu" path="res://icon.svg" id="2_xhxop"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1i3r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k3rtv"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4gr23"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="BHop3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924557, 0)
+script = ExtResource("1_gqbpe")
+jump_when_held = true
+sensitivity = Vector2(0.22, 0.22)
+move_forward = "forward"
+move_backward = "backwards"
+move_left = "left"
+move_right = "right"
+jump = "jump"
+gravity = 20.0
+bhop_frames = 10
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="BHop3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BHop3D/Camera3D"]
+transform = Transform3D(-0.0276064, 3.32343e-11, 0.0963619, 0.280529, 0.142039, 0.000401477, -1.3342, 0.029865, -0.00190944, -0.00665233, -0.212085, -0.323586)
+mesh = SubResource("BoxMesh_c1i3r")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BHop3D"]
+shape = SubResource("CapsuleShape3D_k3rtv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_4gr23")
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(-15.6714, 0, 0, 0, -0.59298, 1.55884, 0, -17.652, -0.0523659, -0.000417709, -0.0644922, 0.00652736)
+texture = ExtResource("2_xhxop")
