@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjkw132lbhjv6"]
+[gd_scene load_steps=10 format=3 uid="uid://ey68m6m661i6"]
 
 [ext_resource type="Script" path="res://Scene2.gd" id="1_xxth8"]
 [ext_resource type="Script" path="res://addons/scene_safe_multiplayer/scene_safe_mp_spawner.gd" id="2_jbmea"]
