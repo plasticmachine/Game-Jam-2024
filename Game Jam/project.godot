@@ -29,7 +29,7 @@ project/assembly_name="Game Jam"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bhop3d/plugin.cfg", "res://addons/scene_safe_multiplayer/plugin.cfg")
+enabled=PackedStringArray("res://addons/bhop3d/plugin.cfg", "res://addons/grappling_hook_3d/plugin.cfg", "res://addons/scene_safe_multiplayer/plugin.cfg")
 
 [input]
 
