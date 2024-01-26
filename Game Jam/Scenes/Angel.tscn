@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://bitin4jqkegn3"]
+
+[ext_resource type="Script" path="res://addons/bhop3d/src/bhop3d.gd" id="1_62o5k"]
+[ext_resource type="Material" uid="uid://6b6a4wlmsajh" path="res://materials/gunblue.tres" id="2_0vbm0"]
+[ext_resource type="Script" path="res://addons/grappling_hook_3d/src/hook_controller.gd" id="4_k4rax"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yfpig"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b6xtg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_phm1x"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c8t18"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("PlayerLabel:text")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+
+[node name="BHop3D" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00166, 0)
+collision_layer = 2
+script = ExtResource("1_62o5k")
+sensitivity = Vector2(0.15, 0.15)
+move_forward = "forward"
+move_backward = "backwards"
+move_left = "left"
+move_right = "right"
+jump = "jump"
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-0.0276064, 3.32343e-11, 0.0963619, 0.280529, 0.142039, 0.000401477, -1.3342, 0.029865, -0.00190944, 0.315668, -0.212085, -0.323586)
+material_override = ExtResource("2_0vbm0")
+mesh = SubResource("BoxMesh_yfpig")
+skeleton = NodePath("../..")
+
+[node name="Hook Raycast" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b6xtg")
+
+[node name="Hook Source" type="Marker3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.316399, -0.542668, -0.296588)
+
+[node name="HookController" type="Node" parent="." node_paths=PackedStringArray("hook_raycast", "player_body", "hook_source")]
+script = ExtResource("4_k4rax")
+hook_raycast = NodePath("../Camera3D/Hook Raycast")
+player_body = NodePath("..")
+launch_action_name = "hook_cast"
+retract_action_name = "hook_retract"
+hook_source = NodePath("../CollisionShape3D/Hook Source")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.39619, 0.39619)
+color = Color(0, 1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_phm1x")
+
+[node name="PlayerLabel" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.11878, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_c8t18")

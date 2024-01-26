@@ -6,6 +6,8 @@ extends Node3D
 @onready var rope_visial_end := $"Hook End/Rope Visual Target"
 @onready var hook_end := $"Hook End"
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 
 func extend_from_to(source_position: Vector3, target_position: Vector3, target_normal: Vector3) -> void:
 	hook_end.global_position = target_position
@@ -25,6 +27,7 @@ func extend_from_to(source_position: Vector3, target_position: Vector3, target_n
 func _align_hook_end_with_surface(target_normal: Vector3) -> void:
 	# This function compensates for the possible error of "look_at()" function
 	# when model has to look strait up/down.
+	if not is_multiplayer_authority(): return
 	
 	if target_normal.dot(Vector3.UP) > 0.001 or target_normal.y < 0:
 		if target_normal.y > 0:

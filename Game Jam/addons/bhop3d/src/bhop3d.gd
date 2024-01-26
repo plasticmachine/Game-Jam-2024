@@ -44,6 +44,10 @@ extends CharacterBody3D
 ## Camera to update with mouse controls
 @export var camera : Camera3D
 
+@onready var playerLabel = $PlayerLabel
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 ## Utility function for setting mouse mode, always visible if camera is unset
 func update_mouse_mode():
 	if look_enabled and camera:
@@ -131,16 +135,21 @@ func update_frame_timer():
 
 ## Get frame velocity and update character body
 func handle_movement(delta):
-	print(velocity.length())
+#	print(velocity.length())
 	velocity = get_next_velocity(velocity, delta)
 	move_and_slide()
 
 ### Godot internal functions
 func _physics_process(delta):
+	playerLabel.text = PlayerName.player_name
+	if not is_multiplayer_authority(): return
 	handle_movement(delta)
 
 func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
 	mouse_look(event)
 
 func _ready():
+	if not is_multiplayer_authority(): return
 	update_mouse_mode()
+	camera.current = true
