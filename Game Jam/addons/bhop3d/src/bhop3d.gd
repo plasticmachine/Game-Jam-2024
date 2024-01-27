@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+@export_category("Player Stats")
+@export var health = 1
+
+
 @export_category("Activity Controls")
 ## Whether the character is currently able to look around
 @export var look_enabled : bool = true : 
@@ -45,6 +49,8 @@ extends CharacterBody3D
 @export var camera : Camera3D
 
 @onready var playerLabel = $PlayerLabel
+@onready var pistolRaycast = $Camera3D/PistolRaycast
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -148,8 +154,23 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
 	mouse_look(event)
+	
+	
+	if Input.is_action_just_pressed("shoot"):
+		if pistolRaycast.is_colliding():
+			var hit_player = pistolRaycast.get_collider()
+			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+
+@rpc("any_peer")
+func receive_damage():
+	health -= 1
+	if health <= 0:
+		health = 1
+		position = Vector3.ZERO
 
 func _ready():
 	if not is_multiplayer_authority(): return
 	update_mouse_mode()
 	camera.current = true
+
+

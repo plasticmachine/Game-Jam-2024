@@ -194,7 +194,7 @@ alignment = 1
 
 [node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "N'where Ya Trying Ta Go?"
+placeholder_text = "Address"
 alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
