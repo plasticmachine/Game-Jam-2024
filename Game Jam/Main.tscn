@@ -136,6 +136,19 @@ skeleton = NodePath("")
 transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, 16.8988, 14.0797, -18.1252)
 shape = SubResource("CylinderShape3D_827gm")
 
+[node name="StaticBody3D9" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6508, 29.5382, -6.51222)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D9"]
+transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, -83.2106, -18.7356, 0)
+material_override = SubResource("StandardMaterial3D_14f43")
+mesh = SubResource("CylinderMesh_0220m")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D9"]
+transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, 0, 0, 0)
+shape = SubResource("CylinderShape3D_827gm")
+
 [node name="StaticBody3D8" type="StaticBody3D" parent="walls_floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3254, 14.7691, -3.25611)
 
