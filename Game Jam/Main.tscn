@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://t8pqapxgqf6u"]
+[gd_scene load_steps=26 format=3 uid="uid://t8pqapxgqf6u"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r8eu"]
 [ext_resource type="Texture2D" uid="uid://ctvpf3xo3yae1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_ov5cs"]
@@ -45,6 +45,14 @@ albedo_texture = ExtResource("6_de7o3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14f43"]
 albedo_texture = ExtResource("6_de7o3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_y5dmr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvafq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rsmhf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u7vjw"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_8r8eu")
@@ -161,6 +169,35 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D8"]
 transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, 0, 0, 0)
 shape = SubResource("CylinderShape3D_827gm")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(5.185, 0, 0, 0, 0.075, 0, 0, 0, 2.015, -65.3051, 24.001, -77.8381)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D10"]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_y5dmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D10"]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_fvafq")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1.49105, 0.000148105, 0, -4.11397e-06, 0.0838425, -1.67188, -0.000104013, 2.11979, 0.0661267, -43.2967, 17.2562, -77.8299)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D11"]
+mesh = SubResource("CylinderMesh_rsmhf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D11"]
+shape = SubResource("CylinderShape3D_u7vjw")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1.49105, 0.000148105, 0, -4.11397e-06, 0.0838425, -1.67188, -0.000104013, 2.11979, 0.0661267, -29.2047, 11.129, -77.9992)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D12"]
+mesh = SubResource("CylinderMesh_rsmhf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D12"]
+shape = SubResource("CylinderShape3D_u7vjw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
