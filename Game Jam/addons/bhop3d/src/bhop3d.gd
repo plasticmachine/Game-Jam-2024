@@ -130,14 +130,14 @@ func get_next_velocity(previousVelocity, delta):
 	if (Input.is_action_pressed(jump) if jump_when_held else Input.is_action_just_pressed(jump)) \
 			and move_enabled and grounded:
 		velocity.y = get_jump()
-	var result = wallDetect.collision_result
-	if result.size() > 0:
-		var collision = result[0]
-		var wall_normal = collision.normal
-		var wall_run_speed = 100.0 # Change this to control the speed of wall running
-		velocity.x = wall_normal.x * wall_run_speed
-		velocity.y = wall_normal.y * wall_run_speed
-		print_debug(velocity.x)
+#	var result = wallDetect.collision_result
+#	if result.size() > 0:
+#		var collision = result[0]
+#		var wall_normal = collision.normal
+#		var wall_run_speed = 100.0 # Change this to control the speed of wall running
+#		velocity.x = wall_normal.x * wall_run_speed
+#		velocity.y = wall_normal.y * wall_run_speed
+#		print_debug(velocity.x)
 		
 	
 	# Return the new velocity
@@ -175,7 +175,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	handle_movement(delta)
 	handle_camera_unlocking()
-	handle_wall_detection()
+#	handle_wall_detection()
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
@@ -192,7 +192,7 @@ func receive_damage():
 	health -= 1
 	if health <= 0:
 		health = 1
-		position = Vector3.ZERO
+		queue_free()
 
 func _ready():
 	if not is_multiplayer_authority(): return

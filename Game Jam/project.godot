@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Game Jam"
-run/main_scene="res://world.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

@@ -42,6 +42,8 @@ move_backward = "backwards"
 move_left = "left"
 move_right = "right"
 jump = "jump"
+gravity = 75.0
+jump_force = 3.0
 camera = NodePath("Camera3D")
 
 [node name="WallRaycast" type="ShapeCast3D" parent="."]
@@ -75,6 +77,7 @@ hook_raycast = NodePath("../Camera3D/Hook Raycast")
 player_body = NodePath("..")
 launch_action_name = "hook_cast"
 retract_action_name = "hook_retract"
+pull_speed = 2.0
 hook_source = NodePath("../CollisionShape3D/Hook Source")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
