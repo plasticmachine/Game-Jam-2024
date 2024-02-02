@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bitin4jqkegn3"]
+[gd_scene load_steps=11 format=3 uid="uid://bitin4jqkegn3"]
 
 [ext_resource type="Script" path="res://addons/bhop3d/src/bhop3d.gd" id="1_62o5k"]
 [ext_resource type="Material" uid="uid://6b6a4wlmsajh" path="res://materials/gunblue.tres" id="2_0vbm0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b4286oh01f5kc" path="res://addons/kenney_particle_pack/star_07.png" id="4_25450"]
 [ext_resource type="Script" path="res://addons/grappling_hook_3d/src/hook_controller.gd" id="4_k4rax"]
 [ext_resource type="PackedScene" uid="uid://dv6sg66eyfgjy" path="res://models/Glb.glb" id="6_keogq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_srwv1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yfpig"]
 
@@ -42,6 +44,11 @@ move_right = "right"
 jump = "jump"
 camera = NodePath("Camera3D")
 
+[node name="WallRaycast" type="ShapeCast3D" parent="."]
+transform = Transform3D(2.43517, 0, 0, 0, 3.48991, 0, 0, 0, 1.45981, -0.000105619, 4.40902, 0.0104068)
+shape = SubResource("BoxShape3D_srwv1")
+debug_shape_custom_color = Color(0.105882, 0.0235294, 0.0627451, 1)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04514, -0.497604)
 
@@ -53,7 +60,7 @@ mesh = SubResource("BoxMesh_yfpig")
 skeleton = NodePath("../..")
 
 [node name="Hook Raycast" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -25)
+target_position = Vector3(0, 0, -75)
 
 [node name="PistolRaycast" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1003.77)
@@ -75,7 +82,7 @@ transform = Transform3D(-1.80453, 0, -8.73462e-08, 0, 3.15219, 0, 1.57757e-07, 0
 shape = SubResource("BoxShape3D_0mcq1")
 
 [node name="Hook Source" type="Marker3D" parent="CollisionShape3D"]
-transform = Transform3D(0.554161, 0, 0, 0, 0.31724, 0, 0, 0, 1.00088, 0.175336, -0.0628758, -0.296848)
+transform = Transform3D(0.554161, 0, -2.13163e-14, 0, 0.31724, 0, 8.52651e-14, 0, 1.00088, -0.238944, -0.0628757, 0.129048)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -97,7 +104,7 @@ texture = ExtResource("4_25450")
 stretch_mode = 5
 
 [node name="PlayerLabel" type="Label3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.11878, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.95023, 0)
 visibility_range_end = 4096.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

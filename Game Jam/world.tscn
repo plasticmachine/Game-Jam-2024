@@ -1,53 +1,55 @@
-[gd_scene load_steps=22 format=3 uid="uid://t8pqapxgqf6u"]
+[gd_scene load_steps=23 format=3 uid="uid://bfepnd05v8isb"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_8r8eu"]
-[ext_resource type="Texture2D" uid="uid://ctvpf3xo3yae1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_ov5cs"]
-[ext_resource type="Texture2D" uid="uid://cva3bnm5mwtuu" path="res://icon.svg" id="2_fuco6"]
-[ext_resource type="Texture2D" uid="uid://djn56lsql4fev" path="res://addons/kenney_prototype_textures/green/texture_08.png" id="3_62rbj"]
-[ext_resource type="Material" uid="uid://bunoydye1kof7" path="res://materials/wallpink.tres" id="4_50d0p"]
-[ext_resource type="Texture2D" uid="uid://rpv2qu4hooor" path="res://addons/kenney_prototype_textures/purple/texture_08.png" id="5_jm8w3"]
-[ext_resource type="Texture2D" uid="uid://ny2et87j0la4" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="6_de7o3"]
+[ext_resource type="Script" path="res://world.gd" id="1_mhh5e"]
+[ext_resource type="Texture2D" uid="uid://ctvpf3xo3yae1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_6m56i"]
+[ext_resource type="Texture2D" uid="uid://cva3bnm5mwtuu" path="res://icon.svg" id="3_kbfco"]
+[ext_resource type="Texture2D" uid="uid://djn56lsql4fev" path="res://addons/kenney_prototype_textures/green/texture_08.png" id="4_87vn1"]
+[ext_resource type="Material" uid="uid://bunoydye1kof7" path="res://materials/wallpink.tres" id="5_w6gl3"]
+[ext_resource type="Texture2D" uid="uid://rpv2qu4hooor" path="res://addons/kenney_prototype_textures/purple/texture_08.png" id="6_mxrk2"]
+[ext_resource type="Texture2D" uid="uid://ny2et87j0la4" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="7_bwu45"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qpspa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2hv0"]
-albedo_texture = ExtResource("1_ov5cs")
+albedo_texture = ExtResource("2_6m56i")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyxg4"]
-albedo_texture = ExtResource("3_62rbj")
+albedo_texture = ExtResource("4_87vn1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_j0y1s"]
-material = ExtResource("4_50d0p")
+material = ExtResource("5_w6gl3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gksn"]
 size = Vector3(58.4154, 28.8607, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0xrh"]
-albedo_texture = ExtResource("3_62rbj")
+albedo_texture = ExtResource("4_87vn1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uoiv"]
-albedo_texture = ExtResource("3_62rbj")
+albedo_texture = ExtResource("4_87vn1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8cdv"]
-albedo_texture = ExtResource("3_62rbj")
+albedo_texture = ExtResource("4_87vn1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4oga"]
-albedo_texture = ExtResource("5_jm8w3")
+albedo_texture = ExtResource("6_mxrk2")
 
 [sub_resource type="PrismMesh" id="PrismMesh_m83lt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_186hi"]
-albedo_texture = ExtResource("6_de7o3")
+albedo_texture = ExtResource("7_bwu45")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0220m"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_827gm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14f43"]
-albedo_texture = ExtResource("6_de7o3")
+albedo_texture = ExtResource("7_bwu45")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_caj6i"]
 
 [node name="World" type="Node"]
-script = ExtResource("1_8r8eu")
+script = ExtResource("1_mhh5e")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.1926, 0)
@@ -64,7 +66,7 @@ shape = SubResource("WorldBoundaryShape3D_qpspa")
 [node name="Sprite3D" type="Sprite3D" parent="walls_floor/StaticBody3D"]
 transform = Transform3D(-15.6714, 0, 0, 0, 7.72029e-07, 1.55972, 0, -17.662, 6.81775e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_f2hv0")
-texture = ExtResource("2_fuco6")
+texture = ExtResource("3_kbfco")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="walls_floor"]
 transform = Transform3D(3.38366, 0, 0, 0, 0.992796, 0, 0, 0, 0.992796, 0, 14.3154, -90.1363)
@@ -146,7 +148,7 @@ mesh = SubResource("CylinderMesh_0220m")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D9"]
-transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, 0, 0, 0)
+transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, -83.2273, -18.7808, 0)
 shape = SubResource("CylinderShape3D_827gm")
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="walls_floor"]
@@ -161,6 +163,15 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D8"]
 transform = Transform3D(4.58401, 0, 0, 0, 14.5951, 0, 0, 0, 4.6251, 0, 0, 0)
 shape = SubResource("CylinderShape3D_827gm")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10981, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D10"]
+transform = Transform3D(445.335, 0, 0, 0, 445.335, 0, 0, 0, 96.7618, 0, 2.99358, 6.91652)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D10/MeshInstance3D"]
+shape = SubResource("SphereShape3D_caj6i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

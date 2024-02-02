@@ -47,9 +47,13 @@ extends CharacterBody3D
 @export_category("Controlled Nodes")
 ## Camera to update with mouse controls
 @export var camera : Camera3D
+@export var camera_lock_x = -90
+@export var camera_lock_y = 90
+
 
 @onready var playerLabel = $PlayerLabel
 @onready var pistolRaycast = $Camera3D/PistolRaycast
+@onready var wallDetect = $WallRaycast
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -66,9 +70,9 @@ func mouse_look(event):
 	if look_enabled and camera:
 		if event is InputEventMouseMotion:
 			rotate_y(deg_to_rad(-event.relative.x * sensitivity.y))
-			camera.rotate_x(deg_to_rad(-event.relative.y * sensitivity.x))
-			rotation.x = clamp(rotation.x, deg_to_rad(-89), deg_to_rad(89))
-			
+			var new_rotation = camera.rotation.x + deg_to_rad(-event.relative.y * sensitivity.x)
+			camera.rotation.x = clamp(new_rotation, deg_to_rad(camera_lock_x), deg_to_rad(camera_lock_y))
+
 
 ## Get player's intended direction. (0,0) if movement disabled
 func get_wishdir():
@@ -126,6 +130,15 @@ func get_next_velocity(previousVelocity, delta):
 	if (Input.is_action_pressed(jump) if jump_when_held else Input.is_action_just_pressed(jump)) \
 			and move_enabled and grounded:
 		velocity.y = get_jump()
+	var result = wallDetect.collision_result
+	if result.size() > 0:
+		var collision = result[0]
+		var wall_normal = collision.normal
+		var wall_run_speed = 100.0 # Change this to control the speed of wall running
+		velocity.x = wall_normal.x * wall_run_speed
+		velocity.y = wall_normal.y * wall_run_speed
+		print_debug(velocity.x)
+		
 	
 	# Return the new velocity
 	return velocity
@@ -139,6 +152,17 @@ func update_frame_timer():
 	else:
 		frame_timer = 0
 
+func handle_camera_unlocking():
+	if Input.is_action_pressed("camera_unlock"):
+		camera_lock_x = -180
+		camera_lock_y = 180
+	else:
+		camera_lock_x = -90
+		camera_lock_y = 90
+
+func handle_wall_detection():
+	return wallDetect.get_collision_count() > 0
+
 ## Get frame velocity and update character body
 func handle_movement(delta):
 #	print(velocity.length())
@@ -150,6 +174,8 @@ func _physics_process(delta):
 	playerLabel.text = PlayerName.player_name
 	if not is_multiplayer_authority(): return
 	handle_movement(delta)
+	handle_camera_unlocking()
+	handle_wall_detection()
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
