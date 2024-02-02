@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://t8pqapxgqf6u"]
+[gd_scene load_steps=30 format=3 uid="uid://t8pqapxgqf6u"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r8eu"]
 [ext_resource type="Texture2D" uid="uid://ctvpf3xo3yae1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_ov5cs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://bunoydye1kof7" path="res://materials/wallpink.tres" id="4_50d0p"]
 [ext_resource type="Texture2D" uid="uid://rpv2qu4hooor" path="res://addons/kenney_prototype_textures/purple/texture_08.png" id="5_jm8w3"]
 [ext_resource type="Texture2D" uid="uid://ny2et87j0la4" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="6_de7o3"]
+[ext_resource type="Texture2D" uid="uid://b0f1v6u2c38v3" path="res://addons/kenney_prototype_textures/orange/texture_09.png" id="8_44t6v"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qpspa"]
 
@@ -46,15 +47,24 @@ albedo_texture = ExtResource("6_de7o3")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14f43"]
 albedo_texture = ExtResource("6_de7o3")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xj8f1"]
+albedo_texture = ExtResource("8_44t6v")
+
 [sub_resource type="BoxMesh" id="BoxMesh_y5dmr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvafq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmpjf"]
+albedo_texture = ExtResource("8_44t6v")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rsmhf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u7vjw"]
 
-[node name="World" type="Node"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88c43"]
+albedo_texture = ExtResource("8_44t6v")
+
+[node name="BIG MAP" type="Node"]
 script = ExtResource("1_8r8eu")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -78,12 +88,11 @@ texture = ExtResource("2_fuco6")
 transform = Transform3D(3.38366, 0, 0, 0, 0.992796, 0, 0, 0, 0.992796, 0, 14.3154, -90.1363)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D2"]
-transform = Transform3D(58.4876, 0, 0, 0, 32.9771, 0, 0, 0, 1.11687, -0.502127, 1.00136, 2.25972)
+transform = Transform3D(58.4876, 0, 0, 0, 32.9771, 0, 0, 0, 1.11687, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dyxg4")
 mesh = SubResource("BoxMesh_j0y1s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.31531)
 shape = SubResource("BoxShape3D_4gksn")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="walls_floor"]
@@ -175,6 +184,7 @@ transform = Transform3D(5.185, 0, 0, 0, 0.075, 0, 0, 0, 2.015, -65.3051, 24.001,
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D10"]
 transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_xj8f1")
 mesh = SubResource("BoxMesh_y5dmr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D10"]
@@ -182,21 +192,60 @@ transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("BoxShape3D_fvafq")
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="walls_floor"]
-transform = Transform3D(1.49105, 0.000148105, 0, -4.11397e-06, 0.0838425, -1.67188, -0.000104013, 2.11979, 0.0661267, -43.2967, 17.2562, -77.8299)
+transform = Transform3D(1.491, 0, 0, 0, -2.62268e-07, 1.673, 0, -6, -7.31292e-08, -24.9685, 23.4686, -81.1603)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vmpjf")
 mesh = SubResource("CylinderMesh_rsmhf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D11"]
 shape = SubResource("CylinderShape3D_u7vjw")
 
 [node name="StaticBody3D12" type="StaticBody3D" parent="walls_floor"]
-transform = Transform3D(1.49105, 0.000148105, 0, -4.11397e-06, 0.0838425, -1.67188, -0.000104013, 2.11979, 0.0661267, -29.2047, 11.129, -77.9992)
+transform = Transform3D(1.491, 0, 0, 0, -2.18601e-07, 1.673, 0, -5.001, -7.31292e-08, 58.8683, 17.4159, -83.0767)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D12"]
+transform = Transform3D(1, 8.00355e-11, -2.04636e-12, -3.63798e-12, 0.997854, -0.0654728, -2.27374e-13, 0.0654728, 0.997854, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_88c43")
 mesh = SubResource("CylinderMesh_rsmhf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D12"]
+shape = SubResource("CylinderShape3D_u7vjw")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1.491, 0, 0, 0, -2.62268e-07, 1.673, 0, -6, -7.31292e-08, -9.37739, 10.7556, -81.2536)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 2.84217e-14, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vmpjf")
+mesh = SubResource("CylinderMesh_rsmhf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D13"]
+shape = SubResource("CylinderShape3D_u7vjw")
+
+[node name="StaticBody3D14" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1.491, 0, 0, 0, -2.62268e-07, 1.673, 0, -6, -7.31292e-08, 38.1149, 10.5967, -83.1907)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.88178e-16, 0, 7.10543e-14, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vmpjf")
+mesh = SubResource("CylinderMesh_rsmhf")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D14"]
+shape = SubResource("CylinderShape3D_u7vjw")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D15" type="StaticBody3D" parent="walls_floor"]
+transform = Transform3D(1.491, 0, 0, 0, -2.62268e-07, 1.673, 0, -6, -7.31292e-08, 22.7897, 24.1397, -79.9608)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls_floor/StaticBody3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 5.68434e-14, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vmpjf")
+mesh = SubResource("CylinderMesh_rsmhf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls_floor/StaticBody3D15"]
 shape = SubResource("CylinderShape3D_u7vjw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
